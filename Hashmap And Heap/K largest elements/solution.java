@@ -3,7 +3,7 @@ import java.lang.*;
 import java.io.*;
 
 class solution {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
         int[] num = new int[n];
