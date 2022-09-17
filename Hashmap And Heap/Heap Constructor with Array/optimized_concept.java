@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class concept {
+public class optimized_concept{
     public static class MyPriorityQueue {
         ArrayList<Integer> data;
 
@@ -11,7 +11,11 @@ public class concept {
         public MyPriorityQueue(int[] arr) {
             data = new ArrayList<>();
             for(int val: arr){
-                add(val);
+                data.add(val);
+            }
+
+            for(int i = data.size() / 2 - 1; i >= 0; i--){
+                downheapify(i);
             }
         }
 
