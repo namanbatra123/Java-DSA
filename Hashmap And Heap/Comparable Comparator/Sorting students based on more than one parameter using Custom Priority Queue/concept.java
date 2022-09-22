@@ -114,7 +114,14 @@ public class concept{
         }
 
         public int compareTo(Student other){
-            return this.ht - other.ht;
+            return this.name.compareTo(other.name);
+        }      
+        
+    }
+
+    static class HeightComparator implements Comparator<Student>{
+        public int compare(Student s1, Student s2){
+            return s1.ht - s2.ht;
         }
     }
 
@@ -132,20 +139,29 @@ public class concept{
 
     public static void main(String[] args) throws Exception {
         Student[] students = new Student[5];
-        students[0] = new Student("A", 180, 75, 90);
-        students[1] = new Student("B", 150, 85, 33);
-        students[2] = new Student("C", 185, 72, 99);
-        students[3] = new Student("D", 165, 65, 75);
-        students[4] = new Student("E", 177, 55, 88);
+        students[0] = new Student("Amit", 180, 75, 90);
+        students[1] = new Student("Sumit", 150, 85, 33);
+        students[2] = new Student("Neha", 185, 72, 99);
+        students[3] = new Student("Kunal", 165, 65, 75);
+        students[4] = new Student("Aryan", 177, 55, 88);
 
-        PriorityQueue<Student> pqHt = new PriorityQueue<>();    //  Using java's priority queue. Implemeted using comparable.
-        PriorityQueue<Student> pqWt  = new PriorityQueue<>(new WeightComparator());  // implemented using comparator.
-        PriorityQueue<Student> pqMarks  = new PriorityQueue<>(new MarksComparator()); // implemented using comparator.
+        MyPriorityQueue<Student> pq = new MyPriorityQueue<>();    
+        MyPriorityQueue<Student> pqHt = new MyPriorityQueue<>(new HeightComparator());    //  Using java's priority queue. Implemeted using comparable.
+        MyPriorityQueue<Student> pqWt  = new MyPriorityQueue<>(new WeightComparator());  // implemented using comparator.
+        MyPriorityQueue<Student> pqMarks  = new MyPriorityQueue<>(new MarksComparator()); // implemented using comparator.
 
         for(Student i: students){
+            pq.add(i);
             pqHt.add(i);
             pqWt.add(i);
             pqMarks.add(i);
+        }
+
+        System.out.println("On The Basis Of Name");
+        while (pq.size() > 0) {
+            Student student = pq.peek();
+            pq.remove();
+            System.out.println(student);
         }
 
         System.out.println("On The Basis Of Height");
